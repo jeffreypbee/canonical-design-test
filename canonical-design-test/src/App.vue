@@ -4,6 +4,23 @@
   </div>
 </template>
 
+<script>
+import postService from './services/PostService.js'
+
+export default {
+  data() {
+    return {
+      posts: []
+    }
+  },
+  created() {
+    postService.get().then((response) => {
+      this.posts = response.data;
+    });
+  }
+}
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
