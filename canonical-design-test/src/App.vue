@@ -1,45 +1,34 @@
 <template>
   <div id="app">
+    <div v-if="dataLoaded">
+      <PostOverview v-for="(post, index) in posts" :key="`post-${index}`" :post="post" />
+    </div>
     
   </div>
 </template>
 
 <script>
 import postService from './services/PostService.js'
+import PostOverview from './components/PostOverview.vue'
 
 export default {
+  components: {
+    PostOverview
+  }, 
   data() {
     return {
+      dataLoaded: false,
       posts: []
     }
   },
   created() {
     postService.get().then((response) => {
       this.posts = response.data;
+      this.dataLoaded = true;
     });
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+<style lang="scss">
 </style>
