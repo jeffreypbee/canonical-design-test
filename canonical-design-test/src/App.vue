@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div v-if="dataLoaded">
-      <PostOverview v-for="(post, index) in posts" :key="`post-${index}`" :post="post" />
+    <div class="row" v-if="dataLoaded">
+      <PostOverview v-for="(post, index) in posts" :key="`post-${index}`" :post="post" class="col-4" />      
     </div>
     
   </div>
@@ -30,5 +30,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
+.row {
+  margin: 10px;
+}
+
 </style>
